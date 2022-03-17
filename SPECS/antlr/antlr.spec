@@ -1,30 +1,14 @@
-Vendor:         Microsoft Corporation
-Distribution:   Mariner
-#
-# spec file for package antlr
-#
-# Copyright (c) 2020 SUSE LLC
-#
-# All modifications and additions to the file contributed by third parties
-# remain the property of their copyright owners, unless otherwise agreed
-# upon. The license for this file, and modifications and additions to the
-# file, is the same license as for the pristine package itself (unless the
-# license for the pristine package is not an Open Source License, in which
-# case the license is the MIT License). An "Open Source License" is a
-# license that conforms to the Open Source Definition (Version 1.9)
-# published by the Open Source Initiative.
-
-# Please submit bugfixes or comments via https://bugs.opensuse.org/
-#
-
 %global debug_package %{nil}
 %bcond_with python2
+
+Summary:        Another Tool for Language Recognition
 Name:           antlr
 Version:        2.7.7
 Release:        122%{?dist}
-Summary:        Another Tool for Language Recognition
 License:        GPL-2.0-or-later AND SUSE-Public-Domain AND MIT
 Group:          Development/Tools/Other
+Vendor:         Microsoft Corporation
+Distribution:   Mariner
 URL:            https://www.antlr.org/
 Source0:        antlr-%{version}.tar.bz2
 Source1:        %{name}-build.xml

@@ -1,36 +1,18 @@
-
-#
-# spec file for package jflex
-#
-# Copyright (c) 2017 SUSE LINUX GmbH, Nuernberg, Germany.
-#
-# All modifications and additions to the file contributed by third parties
-# remain the property of their copyright owners, unless otherwise agreed
-# upon. The license for this file, and modifications and additions to the
-# file, is the same license as for the pristine package itself (unless the
-# license for the pristine package is not an Open Source License, in which
-# case the license is the MIT License). An "Open Source License" is a
-# license that conforms to the Open Source Definition (Version 1.9)
-# published by the Open Source Initiative.
-
-# Please submit bugfixes or comments via http://bugs.opensuse.org/
-#
-
-
-%define with()          %{expand:%%{?with_%{1}:1}%%{!?with_%{1}:0}}
-%define without()       %{expand:%%{?with_%{1}:0}%%{!?with_%{1}:1}}
-%define bcond_with()    %{expand:%%{?_with_%{1}:%%global with_%{1} 1}}
-%define bcond_without() %{expand:%%{!?_without_%{1}:%%global with_%{1} 1}}
+%define with()             %{expand:%%{?with_%{1}:1}%%{!?with_%{1}:0}}
+%define without()          %{expand:%%{?with_%{1}:0}%%{!?with_%{1}:1}}
+%define bcond_with()       %{expand:%%{?_with_%{1}:%%global with_%{1} 1}}
+%define bcond_without()    %{expand:%%{!?_without_%{1}:%%global with_%{1} 1}}
 %define _without_bootstrap 1
 %define section            free
+
+Summary:        Lexical Analyzer Generator for Java
 Name:           jflex
-Vendor:         Microsoft Corporation
-Distribution:   Mariner
 Version:        1.4.3
 Release:        30%{?dist}
-Summary:        Lexical Analyzer Generator for Java
 License:        GPL-2.0+
 Group:          Development/Libraries/Java
+Vendor:         Microsoft Corporation
+Distribution:   Mariner
 Url:            http://www.jflex.de/
 Source0:        http://www.jflex.de/jflex-%{version}.tar.bz2
 Source1:        jflex.script
@@ -38,9 +20,9 @@ Source100:      jpackage-bootstrap-prepare.sh
 Patch0:         jflex-javac-no-target.patch
 Patch1:         jflex-no-cup-no-jflex.patch
 Patch2:         jflex-classpath.patch
-Patch4:         jflex-byaccj-utl.patch
+Patch3:         jflex-byaccj-utl.patch
 #PATCH-FIX-OPENSUSE: make AllTests.main empty, code was not compatible with junit 4
-Patch5:         jflex-junit4.patch
+Patch4:         jflex-junit4.patch
 BuildRequires:  ant
 BuildRequires:  java-cup-bootstrap
 BuildRequires:  java-devel
@@ -118,8 +100,8 @@ rm -rf src/JFlex/tests
 %else # with bootstrap
 # You must use Re jflex.spec and have a java-cup and jflex installed
 %patch2 -p1
+%patch3 -p1
 %patch4 -p1
-%patch5 -p1
 %endif
 
 %build
@@ -138,10 +120,14 @@ popd
 # jar
 mkdir -p %{buildroot}%{_javadir}
 cp -a lib/JFlex.jar %{buildroot}%{_javadir}/jflex-%{version}.jar
-(cd %{buildroot}%{_javadir} && for jar in *-%{version}*; do ln -s ${jar} `echo $jar| sed  "s|-%{version}||g"`; done)
 
+pushd %{buildroot}%{_javadir}
+for jar in *-%{version}*; do
+  ln -s ${jar} `echo $jar| sed  "s|-%{version}||g"`;
+done
 # compatibility symlink
-(cd %{buildroot}%{_javadir} && ln -s jflex.jar JFlex.jar)
+ln -s jflex.jar JFlex.jar
+popd
 
 mkdir -p %{buildroot}%{_bindir}
 install -p -m 0755 %{SOURCE1} %{buildroot}%{_bindir}/jflex

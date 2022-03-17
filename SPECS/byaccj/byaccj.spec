@@ -1,31 +1,13 @@
-Vendor:         Microsoft Corporation
-Distribution:   Mariner
-#
-# spec file for package byaccj
-#
-# Copyright (c) 2014 SUSE LINUX Products GmbH, Nuernberg, Germany.
-#
-# All modifications and additions to the file contributed by third parties
-# remain the property of their copyright owners, unless otherwise agreed
-# upon. The license for this file, and modifications and additions to the
-# file, is the same license as for the pristine package itself (unless the
-# license for the pristine package is not an Open Source License, in which
-# case the license is the MIT License). An "Open Source License" is a
-# license that conforms to the Open Source Definition (Version 1.9)
-# published by the Open Source Initiative.
-
-# Please submit bugfixes or comments via http://bugs.opensuse.org/
-#
-
+%global jpp_release 3
 
 Summary:        Parser Generator with Java Extension
-License:        Public Domain
-Group:          Development/Libraries/Java
-
 Name:           byaccj
 Version:        1.14
 Release:        25%{?dist}
-%define jpp_release 3
+License:        Public Domain
+Group:          Development/Libraries/Java
+Vendor:         Microsoft Corporation
+Distribution:   Mariner
 Url:            http://byaccj.sourceforge.net/
 Source0:        http://downloads.sourceforge.net/%{name}/%{name}%{version}_src.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
@@ -41,8 +23,6 @@ been written over the years. This is the standard YACC tool that is in
 use every day to produce C/C++ parsers. I have added a "-J" flag which
 will cause BYACC to generate Java source code, instead. So there
 finally is a YACC for Java now!
-
-
 
 %prep
 %setup -q -n %{name}%{version}_src
