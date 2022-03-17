@@ -213,7 +213,7 @@ libselinux-debuginfo-3.2-2.cm1.aarch64.rpm
 libselinux-devel-3.2-2.cm1.aarch64.rpm
 libselinux-python3-3.2-2.cm1.aarch64.rpm
 libselinux-utils-3.2-2.cm1.aarch64.rpm
-libselinux-utils-min-3.2-2.cm2.x86_64.rpm
+libselinux-utils-min-3.2-2.cm1.aarch64.rpm
 libsemanage-3.2-1.cm1.aarch64.rpm
 libsemanage-debuginfo-3.2-1.cm1.aarch64.rpm
 libsemanage-devel-3.2-1.cm1.aarch64.rpm
