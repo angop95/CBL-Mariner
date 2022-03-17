@@ -362,7 +362,7 @@ The mininmum policycoreutils tools for running a SELinux system.
 %systemd_postun_with_restart restorecond.service
 
 %changelog
-* Tue Mar 08 2022 Chris PeBenito <chpebeni@microsoft.com> - 3.2-1
+* Tue Mar 08 2022 Chris PeBenito <chpebeni@microsoft.com> - 3.2-2
 - Split minimum required policy management tools into a subpackage.
 
 * Fri Aug 13 2021 Thomas Crain <thcrain@microsoft.com> - 3.2-1
