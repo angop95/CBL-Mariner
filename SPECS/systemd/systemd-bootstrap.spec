@@ -1,7 +1,14 @@
+# Bootstrap packages have proven to be a hassle, since they often have the same autoprovs as their counterparts.
+# Our build system sometimes chooses systemd-bootstrap over systemd when resolving pkgconfig(*) dependencies.
+# This causes packages to (a) build with bootstrap package versions (not breaking, but sub-optimal) and 
+# (b) often creates installation conflicts where both systemd and systemd-bootstrap are build requirements of the same package
+# (which does cause build breaks).
+# Until we figure out a viable long-term bootstrap solution, let's disable pkgconfig provide generation for this package.
+%define %__pkgconfig_provides /bin/true
 Summary:        Bootstrap version of systemd. Workaround for systemd circular dependency.
 Name:           systemd-bootstrap
 Version:        250.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        LGPLv2+ AND GPLv2+ AND MIT
 Vendor:         Microsoft Corporation
 Distribution:   Mariner
@@ -226,6 +233,9 @@ systemctl preset-all
 %{_datadir}/pkgconfig/udev.pc
 
 %changelog
+* Thu Mar 17 2022 Olivia Crain <thcrain@microsoft.com> - 250.3-2
+- Disable pkgconfig(*) provides generation for this bootstrap package
+
 * Mon Jan 24 2022 Henry Beberman <henry.beberman@microsoft.com> - 250.3-1
 - Update to systemd-stable version 250.3
 - Explicitly disable systemd-homed
