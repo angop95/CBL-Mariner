@@ -1,10 +1,10 @@
 # Bootstrap packages have proven to be a hassle, since they often have the same autoprovs as their counterparts.
 # Our build system sometimes chooses systemd-bootstrap over systemd when resolving pkgconfig(*) dependencies.
 # This causes packages to (a) build with bootstrap package versions (not breaking, but sub-optimal) and 
-# (b) often creates installation conflicts where both systemd and systemd-bootstrap are build requirements of the same package
+# (b) often creates siutations where both systemd and systemd-bootstrap are build requirements of the same package
 # (which does cause build breaks).
 # Until we figure out a viable long-term bootstrap solution, let's disable pkgconfig provide generation for this package.
-%define %__pkgconfig_provides /bin/true
+%global __provides_exclude_from ^%{_libdir}/pkgconfig/.*\\.pc$
 Summary:        Bootstrap version of systemd. Workaround for systemd circular dependency.
 Name:           systemd-bootstrap
 Version:        250.3
