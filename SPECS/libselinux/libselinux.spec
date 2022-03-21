@@ -97,8 +97,10 @@ echo "d %{_localstatedir}/run/setrans 0755 root root" > %{buildroot}/%{_libdir}/
 %files utils
 %defattr(-,root,root,-)
 %{_sbindir}/*
+%exclude %{_sbindir}/getenforce
 %exclude %{_sbindir}/sefcontext_compile
 %exclude %{_sbindir}/selinuxenabled
+%exclude %{_sbindir}/setenforce
 %{_mandir}/man5/*
 %{_mandir}/man8/*
 %{_mandir}/ru/man5/*
@@ -106,8 +108,10 @@ echo "d %{_localstatedir}/run/setrans 0755 root root" > %{buildroot}/%{_libdir}/
 
 %files utils-min
 %defattr(-,root,root,-)
+%{_sbindir}/getenforce
 %{_sbindir}/sefcontext_compile
 %{_sbindir}/selinuxenabled
+%{_sbindir}/setenforce
 
 %files devel
 %defattr(-,root,root,-)
@@ -124,7 +128,7 @@ echo "d %{_localstatedir}/run/setrans 0755 root root" > %{buildroot}/%{_libdir}/
 
 %changelog
 * Tue Mar 08 2022 Chris PeBenito <chpebeni@microsoft.com> - 3.2-2
-- Split sefcontext_compile and selinuxenabled into a subpackage.
+- Split minimum utilities into a subpackage.
 
 * Fri Aug 13 2021 Thomas Crain <thcrain@microsoft.com> - 3.2-1
 - Upgrade to latest upstream version
