@@ -15523,16 +15523,6 @@
       "component": {
         "type": "other",
         "other": {
-          "name": "openvswitch",
-          "version": "2.12.3",
-          "downloadUrl": "http://openvswitch.org/releases/openvswitch-2.12.3.tar.gz"
-        }
-      }
-    },
-    {
-      "component": {
-        "type": "other",
-        "other": {
           "name": "openwsman",
           "version": "2.6.8",
           "downloadUrl": "https://github.com/Openwsman/openwsman/archive/v2.6.8.tar.gz"
